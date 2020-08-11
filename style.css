@@ -1,0 +1,70 @@
+body {
+  text-align: center;
+  background: #444;
+  color: #fff;
+  font-family: serif;
+  font-size: 24pt;
+  overflow: hidden;
+}
+
+input[type=button] {
+  /*-webkit-appearance: none;*/
+  /*appearance: none;*/
+  font-family: monospace;
+  background: #fff;
+  color: #000;
+  border: 1pt solid #bbb;
+  border-radius: 4pt;
+  font-size: 24pt;
+}
+
+input[type=button]:active {
+  background-color: #4488ff;
+  background-image: linear-gradient(#4488ff, #0044ff);
+}
+
+@supports (zoom:2) {
+  input[type=checkbox] {
+    zoom:2
+  }
+}
+@supports not (zoom:2) {
+  input[type=checkbox] {
+    transform: scale(2);
+  }
+}
+
+
+canvas {
+  border: 2pt solid #222;
+  background: #000;
+  border-radius: 8pt;
+  position: absolute;
+  left: 1rem;
+  width: calc(100vw - 2rem);
+  top: 4rem;
+  height: calc(100vh - 7rem);
+}
+
+#top-controls {
+  top: 1rem;
+}
+
+#bottom-controls {
+  top: calc(100vh - 2.25rem);
+}
+
+.controls {
+  position: absolute;
+  left: 1rem;
+  text-align: center;
+  width: calc(100vw - 2rem);
+}
+
+#sub_controls {
+  margin: 4pt;
+}
+
+#tempo_controls {
+  margin: 4pt;
+}

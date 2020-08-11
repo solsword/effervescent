@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <title>Effervescent</title>
+  <meta charset="utf-8"/>
+  <meta name="author" content="Peter Mawhorter"/>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <script type="module" defer src="main.js"></script>
+</head>
+<body>
+  <div class="controls" id="top-controls">
+    <span class="attract">
+      <input
+        type="checkbox"
+        id="attract_mode"
+        checked="true"
+      />
+      automatic mode
+    </span><br>
+  </div>
+  <canvas id="maze" width="800" height="800" ></canvas>
+  <div class="controls" id="bottom-controls">
+    <div id="tempo_controls">
+      <input
+        id="tempo"
+        type="range"
+        min="0"
+        max="1000"
+        value="500"
+      />
+      tempo
+    </div>
+  </div>
+</body>
+</html>
