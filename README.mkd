@@ -1,0 +1,23 @@
+# Effervescent
+
+("Effervescent" is a fancy word for "bubbly," and the recursive
+loop-creating process makes a graph that I like to think of as bubbly.)
+
+Infinite 2-D maze, with loops & automatic inexact pathfinding. By
+default in "automatic mode," new destinations will be chosen randomly on
+a timer. You can always click/tap to select a new destination, and
+scroll/pinch to zoom in/out, although in automatic mode the zoom is
+automatically reset. The slider at the bottom controls how fast the
+movement towards the destination is, although processing power limits may
+also constrain that.
+
+Loops of different scales are roughly exponentially distributed
+(technically, the whole thing is a randomized fractal).
+
+## How to Run
+
+Open index.html or follow this [link to the github.io page](https://solsword.github.io/effervescent).
+
+## License
+
+This code is available under the 3-clause BSD licence. See `LICENSE.txt`.
