@@ -16,7 +16,7 @@ Loops of different scales are roughly exponentially distributed
 
 ## How to Run
 
-Open index.html or follow this [link to the github.io page](https://solsword.github.io/effervescent).
+Open index.html or follow this [link to the github.io page](https://solsword.github.io/effervescent/).
 
 ## License
 
