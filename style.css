@@ -68,3 +68,15 @@ canvas {
 #tempo_controls {
   margin: 4pt;
 }
+
+.credit {
+    position: fixed;
+    right: 0pt;
+    bottom: 0pt;
+    margin: 4pt;
+    font-size: 12pt;
+}
+
+a:link, a:visited {
+    color: #3399ff;
+}
