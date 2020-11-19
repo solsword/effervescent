@@ -257,8 +257,8 @@ function set_destination(context, grid_coords) {
 
 function update_canvas_size(canvas, context) {
     // Updates the canvas size. Called on resize after a timeout.
-    var bounds = canvas.getBoundingClientRect();
-    var car = bounds.width / bounds.height;
+    let bounds = canvas.getBoundingClientRect();
+    let car = bounds.width / bounds.height;
     canvas.width = 800 * car;
     canvas.height = 800;
     context.cwidth = canvas.width;
@@ -819,8 +819,8 @@ function lfsr(x) {
     // Implements a max-cycle-length 32-bit linear-feedback-shift-register.
     // See: https://en.wikipedia.org/wiki/Linear-feedback_shift_register
     // Note that this is NOT reversible!
-    var lsb = x & 1;
-    var r = x >>> 1;
+    let lsb = x & 1;
+    let r = x >>> 1;
     if (lsb) {
         r ^= 0x80200003; // 32, 22, 2, 1
     }
@@ -1664,7 +1664,7 @@ function is_inside(outer_fc, inner_fc) {
     let o_trail = fc_trace(outer_fc);
     let i_trail = fc_trace(inner_fc);
 
-    var dscnt;
+    let dscnt;
     for (dscnt = hd; dscnt < o_trail.length; ++dscnt) {
         if (i_trail[dscnt - hd] != o_trail[dscnt]) {
             return false;
@@ -2873,7 +2873,7 @@ function same(a, b) {
             if (a.length != b.length) {
                 return false;
             }
-            for (var i = 0; i < a.length; ++i) {
+            for (let i = 0; i < a.length; ++i) {
                 if (!same(a[i], b[i])) {
                     return false;
                 }
@@ -2885,7 +2885,7 @@ function same(a, b) {
     } else if (typeof a === "object") {
         if (typeof b === "object") {
             // keys & values match:
-            for (var k in a) {
+            for (let k in a) {
                 if (a.hasOwnProperty(k)) {
                     if (!b.hasOwnProperty(k)) {
                         return false;
@@ -2896,7 +2896,7 @@ function same(a, b) {
                 }
             }
             // extra keys in b?
-            for (var k in b) {
+            for (let k in b) {
                 if (b.hasOwnProperty(k)) {
                     if (!a.hasOwnProperty(k)) {
                         return false;
@@ -2995,7 +2995,7 @@ if (!FAILED) {
 
     // Listen for window resizes but wait until 20 ms after the last
     // consecutive one to do anything.
-    var timer_id = undefined;
+    let timer_id = undefined;
     window.addEventListener("resize", function() {
         if (timer_id != undefined) {
             clearTimeout(timer_id);
