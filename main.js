@@ -233,7 +233,7 @@ function set_scale(context, scale_factor) {
     if (scale_factor < MIN_SCALE) {
         scale_factor = MIN_SCALE;
     }
-    let alt_max = MAX_SCALE * context.cwidth / context.cheight;
+    let alt_max = MAX_SCALE * context.canvasWidth / context.canvasHeight;
     let limit = Math.min(MAX_SCALE, alt_max);
     if (scale_factor > limit) {
         scale_factor = limit;
@@ -261,9 +261,9 @@ function update_canvas_size(canvas, context) {
     let car = bounds.width / bounds.height;
     canvas.width = 800 * car;
     canvas.height = 800;
-    context.cwidth = canvas.width;
-    context.cheight = canvas.height;
-    context.middle = [context.cwidth / 2, context.cheight / 2];
+    context.canvasWidth = canvas.width;
+    context.canvasHeight = canvas.height;
+    context.middle = [context.canvasWidth / 2, context.canvasHeight / 2];
     context.bounds = bounds;
 }
 
@@ -330,37 +330,48 @@ function vc__pgc(ctx, vc) {
 // Viewport <-> canvas coordinates
 function vc__cc(ctx, vc) {
     return [
-        vc[0] * ctx.cwidth,
-        vc[1] * ctx.cheight
+        vc[0] * ctx.canvasWidth,
+        vc[1] * ctx.canvasHeight
     ];
 }
 
 function cc__vc(ctx, cc) {
     return [
-        cc[0] / ctx.cwidth,
-        cc[1] / ctx.cheight
+        cc[0] / ctx.canvasWidth,
+        cc[1] / ctx.canvasHeight
     ];
 }
 
 // Canvas <-> world coordinates
 function cc__wc(ctx, cc) {
     return [
-        ((cc[0] - ctx.cwidth/2)/ctx.cwidth) * ctx.scale + ctx.origin[0],
-        -((cc[1] - ctx.cheight/2)/ctx.cwidth) * ctx.scale + ctx.origin[1]
-            // scale ignores canvas height
+        (
+            ((cc[0] - ctx.canvasWidth/2)/ctx.canvasWidth)
+          * ctx.scale + ctx.origin[0]
+        ),
+        (
+            -((cc[1] - ctx.canvasHeight/2)/ctx.canvasWidth)
+          * ctx.scale + ctx.origin[1]
+        ) // scale ignores canvas height
     ];
 }
 
 function wc__cc(ctx, wc) {
     return [
-        ((wc[0] - ctx.origin[0]) / ctx.scale) * ctx.cwidth + ctx.cwidth/2,
-        -((wc[1] - ctx.origin[1]) / ctx.scale) * ctx.cwidth + ctx.cheight/2
+        (
+            ((wc[0] - ctx.origin[0]) / ctx.scale)
+          * ctx.canvasWidth + ctx.canvasWidth/2
+        ),
+        (
+            -((wc[1] - ctx.origin[1]) / ctx.scale)
+          * ctx.canvasWidth + ctx.canvasHeight/2
+        )
     ];
 }
 
 function canvas_unit(ctx) {
     // Returns the length of one world-coordinate unit in canvas coordinates.
-    return (ctx.cwidth / ctx.scale);
+    return (ctx.canvasWidth / ctx.scale);
 }
 
 // World <-> grid coordinates
@@ -562,7 +573,7 @@ function draw_frame(now) {
     FRAME %= MAX_FC;
 
     // Clear the canvas:
-    CTX.clearRect(0, 0, CTX.cwidth, CTX.cheight);
+    CTX.clearRect(0, 0, CTX.canvasWidth, CTX.canvasHeight);
 
     adjust_viewport(CTX);
     draw_maze(CTX, MAZE_SEED);
@@ -602,7 +613,7 @@ function adjust_viewport(ctx) {
     let ibb = interest_bb(ctx);
 
     // Compute ideal scale
-    let ar = (ctx.cwidth / ctx.cheight);
+    let ar = (ctx.canvasWidth / ctx.canvasHeight);
     let ideal_scale = Math.max(
         COMFORTABLE_SCALE,
         ibb.right - ibb.left,
@@ -610,7 +621,7 @@ function adjust_viewport(ctx) {
     ) * IDEAL_SCALE_MULTIPLIER;
 
     let use_scale = ideal_scale;
-    let alt_max = AUTO_MAX * ctx.cwidth / ctx.cheight;
+    let alt_max = AUTO_MAX * ctx.canvasWidth / ctx.canvasHeight;
     let scale_limit = Math.min(AUTO_MAX, alt_max);
     if (use_scale > scale_limit) { use_scale = scale_limit; }
 
